@@ -1,7 +1,7 @@
 # openconnect avanced configuration
 
 menu "Configuration"
-	depends on PACKAGE_openconnect
+	depends on PACKAGE_openconnect-gp
 
 choice
 	prompt "SSL library"
