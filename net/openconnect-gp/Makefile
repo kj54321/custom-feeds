@@ -28,21 +28,22 @@ PKG_FIXUP:=autoreconf
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/openconnect/config
+define Package/openconnect-gp/config
 	source "$(SOURCE)/Config.in"
 endef
 
-define Package/openconnect
+define Package/openconnect-gp
   SECTION:=net
   CATEGORY:=Network
   DEPENDS:=+libxml2 +kmod-tun +resolveip +vpnc-scripts +OPENCONNECT_OPENSSL:libopenssl +OPENCONNECT_OPENSSL:p11-kit +OPENCONNECT_OPENSSL:libp11 +OPENCONNECT_GNUTLS:libgnutls +OPENCONNECT_STOKEN:libstoken
-  TITLE:=OpenConnect VPN client (Cisco AnyConnect and Juniper/Pulse compatible)
-  MAINTAINER:=Nikos Mavrogiannopoulos <n.mavrogiannopoulos@gmail.com>
-  URL:=http://www.infradead.org/openconnect/
+  TITLE:=OpenConnect VPN client - GLobalProtect
+  MAINTAINER:=dlenski
+  URL:=https://github.com/dlenski/openconnect
   SUBMENU:=VPN
+  CONFLICTS:=openconnect
 endef
 
-define Package/openconnect/description
+define Package/openconnect-gp/description
 	A VPN client compatible with Cisco's AnyConnect SSL VPN, ocserv and Juniper (Pulse secure).
 
         OpenConnect is a client that follows the Cisco's AnyConnect SSL VPN protocol,
@@ -76,7 +77,7 @@ CONFIGURE_ARGS += \
 	--with-stoken
 endif
 
-define Package/openconnect/install
+define Package/openconnect-gp/install
 	$(INSTALL_DIR) $(1)/etc/openconnect/
 	$(INSTALL_DIR) $(1)/lib/netifd/proto
 	$(INSTALL_BIN) ./files/openconnect.sh $(1)/lib/netifd/proto/
@@ -87,4 +88,4 @@ define Package/openconnect/install
 	$(INSTALL_DATA) ./files/openconnect.upgrade $(1)/lib/upgrade/keep.d/openconnect
 endef
 
-$(eval $(call BuildPackage,openconnect))
+$(eval $(call BuildPackage,openconnect-gp))
