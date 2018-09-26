@@ -7,7 +7,7 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=openconnect
+PKG_NAME:=openconnect-gp
 PKG_VERSION:=7.08
 PKG_RELEASE:=9
 PKG_USE_MIPS16:=0
